@@ -1,5 +1,5 @@
-import { createContext, ReactNode, useState } from "react";
-import { setCookie } from 'nookies';
+import { createContext, ReactNode, useEffect, useState } from "react";
+import { setCookie, parseCookies } from 'nookies';
 import Router from 'next/router';
 import { api } from "../services/api";
 
@@ -74,6 +74,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
                 permissions,
                 roles,
             });
+
+            api.defaults.headers['Authorization'] = `Bearer ${token}`
 
             Router.push('/dashboard')
         } catch (error) {
