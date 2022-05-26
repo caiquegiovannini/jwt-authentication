@@ -1,5 +1,6 @@
 import axios, { AxiosError } from 'axios';
 import { parseCookies, setCookie } from 'nookies';
+import { signOut } from '../contexts/AuthContext';
 
 type InterceptorError = {
     response: {
@@ -78,7 +79,7 @@ api.interceptors.response.use(response => {
                 });
             });
         } else {
-            // deslogar
+            signOut();
         }
     }
 });
