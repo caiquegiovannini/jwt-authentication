@@ -24,6 +24,13 @@ type AuthProviderProps = {
     children: ReactNode;
 };
 
+export function signOut() {
+    destroyCookie(undefined, 'nextauth.token');
+    destroyCookie(undefined, 'nextauth.refreshToken');
+
+    Router.push('/');
+};
+
 export const AuthContext = createContext({} as AuthContextData);
 
 export function AuthProvider({ children }: AuthProviderProps) {
