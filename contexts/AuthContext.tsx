@@ -56,10 +56,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
                     });
                 })
                 .catch(() => {
-                    destroyCookie(undefined, 'nextauth.token');
-                    destroyCookie(undefined, 'nextauth.refreshToken');
-
-                    Router.push('/');
+                    signOut()
                 });
         }
     }, []);
